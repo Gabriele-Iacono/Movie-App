@@ -1,7 +1,7 @@
 package com.iacono.app.Movie.App.controllers;
 
 
-import com.iacono.app.Movie.App.entities.Genres;
+import com.iacono.app.Movie.App.entities.Genre;
 import com.iacono.app.Movie.App.services.GenresService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +20,14 @@ public class GenresController {
     private GenresService genresService;
 
     @GetMapping() // GET /genres
-    public ResponseEntity<List<Genres>> getGenres() {
-        List<Genres> genres = genresService.getGenres();
+    public ResponseEntity<List<Genre>> getGenres() {
+        List<Genre> genres = genresService.getGenres();
         return new ResponseEntity<>(genres, HttpStatus.OK);
     }
 //
     @GetMapping("/{id}") // /genres/1
-    public ResponseEntity <Optional<Genres>> getGenre  (@PathVariable("id")Long id) {
-        Optional<Genres> genres = genresService.getGenre(id);
+    public ResponseEntity <Optional<Genre>> getGenre  (@PathVariable("id")Long id) {
+        Optional<Genre> genres = genresService.getGenre(id);
         if (genres.isEmpty()){
             return ResponseEntity.noContent().build();
         }
@@ -37,17 +37,17 @@ public class GenresController {
 
 //
     @PostMapping // Post //genres
-    public ResponseEntity<Genres> createGenre(@Valid @RequestBody Genres genre) {
-        Genres genres = genresService.createGenres(genre);
+    public ResponseEntity<Genre> createGenre(@Valid @RequestBody Genre genre) {
+        Genre genres = genresService.createGenres(genre);
         return new ResponseEntity<>(genres, HttpStatus.CREATED);
     }
     //
 
     //
     @PutMapping("/{id}") // Put //genres/1
-    public ResponseEntity<Genres> updateGenres(@PathVariable Long id, @Valid @RequestBody Genres genres) {
-        Genres updatedGenres = genresService.updateGenre(id, genres);
-        return new ResponseEntity<>(updatedGenres, HttpStatus.OK);
+    public ResponseEntity<Genre> updateGenres(@PathVariable Long id, @Valid @RequestBody Genre genre) {
+        Genre updatedGenre = genresService.updateGenre(id, genre);
+        return new ResponseEntity<>(updatedGenre, HttpStatus.OK);
     }
     //
 

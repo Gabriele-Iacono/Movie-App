@@ -8,11 +8,11 @@ import java.util.List;
 @Entity
 @Table
 @Data
-public class Customers extends Person {
+public class Customer extends Person {
     @Email(message = "l'email deve essere valida")
     private String email;
     @ManyToMany
-    private List<Movies> moviesList;
+    private List<Movie> movieList;
 
 
 

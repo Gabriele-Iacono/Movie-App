@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table
 @Data
-public class Genres {
+public class Genre {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,6 +21,6 @@ public class Genres {
     private String genre;
     @ManyToMany
     @Nullable
-    private List< Movies> moviesList;
+    private List<Movie> movieList;
 
 }

@@ -1,6 +1,6 @@
 package com.iacono.app.Movie.App.services;
 
-import com.iacono.app.Movie.App.entities.Genres;
+import com.iacono.app.Movie.App.entities.Genre;
 import com.iacono.app.Movie.App.repository.GenresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,25 +13,25 @@ public class GenresService {
     @Autowired
     private GenresRepository genresRepository;
 
-    public List<Genres> getGenres() {
-        List<Genres> genres = genresRepository.findAll();
+    public List<Genre> getGenres() {
+        List<Genre> genres = genresRepository.findAll();
         return genres;
     }
 
-    public Optional<Genres> getGenre(Long id) {
-        Optional<Genres> genres = genresRepository.findById(id);
+    public Optional<Genre> getGenre(Long id) {
+        Optional<Genre> genres = genresRepository.findById(id);
         return genres;
     }
 
-    public Genres createGenres(Genres genre ) {
+    public Genre createGenres(Genre genre ) {
         return genresRepository.save(genre);
     }
 
-    public Genres updateGenre(Long id, Genres updatedGenres) {
-        Optional<Genres> genres = genresRepository.findById(id);
+    public Genre updateGenre(Long id, Genre updatedGenre) {
+        Optional<Genre> genres = genresRepository.findById(id);
         if (genres.isPresent()) {
-            Genres genre = genres.get();
-            genre.setGenre(updatedGenres.getGenre());
+            Genre genre = genres.get();
+            genre.setGenre(updatedGenre.getGenre());
             return genresRepository.save(genre);
         } else  throw new RuntimeException("Genere non trovato con id " + id);
     }

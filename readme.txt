@@ -1,2 +1,2 @@
 
-"Movie Rental System". This system will manage movies, directors, genres, customers, and rental movies
+"Movie Rental System". This system will manage movie, directors, genre, customers, and rental movie
