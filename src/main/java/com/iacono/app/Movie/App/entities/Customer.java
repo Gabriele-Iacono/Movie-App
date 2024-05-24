@@ -13,6 +13,16 @@ public class Customer extends Person {
     private String email;
     @ManyToMany
     private List<Movie> movieList;
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+
+
+
+
+
+
 
 
 

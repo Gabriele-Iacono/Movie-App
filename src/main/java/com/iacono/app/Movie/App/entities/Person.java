@@ -22,6 +22,8 @@ public class Person {
     @NotBlank(message = "il cognome non può essere vuoto")
     @Size(max = 10, min = 1, message = "il cognome deve essere almeno di {min} carattere e massimo di {max} carattere")
     private String lastName;
+    private String role; // es Attore, produttore, Scrittore
+    private String birthDate;
 
 
 }

@@ -16,46 +16,53 @@ import java.util.List;
 @Table
 @Data
 public class Movie {
-    @Id
-    @GeneratedValue
-    private Long id;
-    @NotEmpty
-    @NotBlank(message = "è richiesto il nome")
+//      @Id
+//    @GeneratedValue
+//    private Long id;
+//    @NotEmpty
+//    @NotBlank(message = "è richiesto il nome")
+//    private String title;
+//    @ManyToMany
+//    @NotEmpty
+//    @NotBlank(message = "inserire almeno un genere")
+//    private List<Genre> genres;
+//    @ManyToMany
+//    @Nullable
+//    private List<Customer> customerList;
+//    @JsonFormat(pattern = "HH:mm:ss")
+//    private LocalTime filmLength;
+//    @NotEmpty
+//    @NotBlank
+//    private Date Year;
+//    @ManyToOne
+//    @JoinColumn(name = "director_id")
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
     private String title;
-    @ManyToMany
-    @NotEmpty
-    @NotBlank(message = "inserire almeno un genere")
-    private List<Genre> genres;
-    @ManyToMany
-    @Nullable
-    private List<Customer> customerList;
-    @JsonFormat(pattern = "HH:mm:ss")
-    private LocalTime filmLength;
-    @NotEmpty
-    @NotBlank
-    private Date Year;
+    private String description;
+    private String releaseDate;
+
     @ManyToOne
     @JoinColumn(name = "director_id")
     private Director director;
 
+    @ManyToMany
+    @JoinTable(
+            name = "movie_genre",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private List<Genre> genres;
 
-    // Recupera una lista di tutti i film.
-    // GET /movies
-
-
-    // GET /movies/{id}
-    // Descrizione: Recupera i dettagli di un film specifico.
-
-    // POST /movies
-    // Aggiunge un nuovo film al database.
-
-    // PUT /movies/{id}
-    // Aggiorna i dettagli di un film esistente.
-
-    // DELETE /movies/{id}
-    // Elimina un film dal database.
-
-
-
-
+    @ManyToMany
+    @JoinTable(
+            name = "movie_person",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "person_id")
+    )
+    private List<Person> persons;
 }
+
+
+

@@ -15,22 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/movies")
 public class MoviesController {
-    // Recupera una lista di tutti i film.
-    // GET /movies
-    // FATTA
 
-
-    // GET /movies/{id} fatta
-    // Descrizione:   Recupera i dettagli di un film specifico.
-
-    // POST /movies
-    // Aggiunge un nuovo film al database.
-
-    // PUT /movies/{id}
-    // Aggiorna i dettagli di un film esistente.
-
-    // DELETE /movies/{id}
-    // Elimina un film dal database.
     @Autowired
     private MoviesService moviesService;
 
@@ -38,12 +23,12 @@ public class MoviesController {
 
     @GetMapping()
     public ResponseEntity<List<Movie>> getallMovies() {
-        List<Movie> movies = moviesService.getMovies();
+        List<Movie> movies = moviesService.getAllMovies();
         return new ResponseEntity<>(movies, HttpStatus.OK);
 
     }
 
-    @GetMapping("/movies/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
         Movie movie = moviesService.getMovieById(id);
         return ResponseEntity.ok(movie);
@@ -56,9 +41,7 @@ public class MoviesController {
         return ResponseEntity.created(new URI("/movies/" + newMovie.getId())).body(newMovie);
     }
 
-    // dopo le {
-// tipo, indice, = , richiami il servizio, proprietà, e in questo caso(@PathVariable, @RequestBody) passi come parametro id, e updatedMovie
-    @PutMapping("/movies/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Movie> updateMovies(@PathVariable Long id, @RequestBody Movie updatedMovie) {
         Movie updateMovie = moviesService.updateMovie(id, updatedMovie);
         return ResponseEntity.ok(updateMovie);

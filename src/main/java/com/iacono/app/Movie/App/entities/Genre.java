@@ -5,22 +5,26 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
-@Table
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Genre {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotEmpty
     @NotBlank(message = "genere richiesto")
     private String genre;
-    @ManyToMany
-    @Nullable
-    private List<Movie> movieList;
 
+    @ManyToMany(mappedBy = "genres")
+    private List<Movie> movieList;
 }
