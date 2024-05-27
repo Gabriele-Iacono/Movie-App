@@ -1,5 +1,6 @@
 package com.iacono.app.Movie.App.entities;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -8,9 +9,11 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.Date;
+@Entity
+//@MappedSuperclass
 @Data
-@MappedSuperclass
-public class Person {
+public abstract class Person {
     @Id
     @GeneratedValue
     private Long id;
@@ -23,7 +26,7 @@ public class Person {
     @Size(max = 10, min = 1, message = "il cognome deve essere almeno di {min} carattere e massimo di {max} carattere")
     private String lastName;
     private String role; // es Attore, produttore, Scrittore
-    private String birthDate;
+    private Date birthDate;
 
 
 }
